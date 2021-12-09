@@ -3,7 +3,7 @@ source("~/projects/code-share-112018/jgpplotter.R")
 
 read.APSet  <- function(file.seq=seq(0,4), file.prefix="cell_2_") {
     if (file.seq[1] != 0) {print("Warning: Sequencing did not begin at 0.")}
-    ap.files <- list.files(patter=file.prefix)
+    ap.files <- list.files(pattern=file.prefix)
     models  <- list()
     for (i in file.seq) {
         ndx.pattern  <- paste("_",as.character(i),".txt",sep="")
