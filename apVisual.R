@@ -27,3 +27,32 @@ visualizeAPDs <- function(t,mV,apVoltages,apDurations,...){
     }
 
 }
+
+
+visualizeAPDs.SAP <- function(t, mV, APVsAPDs, ...) {
+    jgpplotter(t, mV, type="l", ...)
+    abline(v=t[APVsAPDs$peakV.ndx],col="blue")
+    abline(v=t[APVsAPDs$first.ndx],lty=1,col="seagreen")
+    abline(v=t[APVsAPDs$last.ndx],lty=2,col="magenta")
+    colors <- rainbow(n=9)
+
+    segments(x0=APVsAPDs$apd10.t1, y0=APVsAPDs$ap10, x1=APVsAPDs$apd10.t2,
+             y1=APVsAPDs$ap10, col=colors[1])
+    segments(x0=APVsAPDs$apd20.t1, y0=APVsAPDs$ap20, x1=APVsAPDs$apd20.t2,
+             y1=APVsAPDs$ap20, col=colors[2])
+    segments(x0=APVsAPDs$apd30.t1, y0=APVsAPDs$ap30, x1=APVsAPDs$apd30.t2,
+             y1=APVsAPDs$ap30, col=colors[3])
+    segments(x0=APVsAPDs$apd40.t1, y0=APVsAPDs$ap40, x1=APVsAPDs$apd40.t2,
+             y1=APVsAPDs$ap40, col=colors[4])
+    segments(x0=APVsAPDs$apd50.t1, y0=APVsAPDs$ap50, x1=APVsAPDs$apd50.t2,
+             y1=APVsAPDs$ap50, col=colors[5])
+    segments(x0=APVsAPDs$apd60.t1, y0=APVsAPDs$ap60, x1=APVsAPDs$apd60.t2,
+             y1=APVsAPDs$ap60, col=colors[6])
+    segments(x0=APVsAPDs$apd70.t1, y0=APVsAPDs$ap70, x1=APVsAPDs$apd70.t2,
+             y1=APVsAPDs$ap70, col=colors[7])
+    segments(x0=APVsAPDs$apd80.t1, y0=APVsAPDs$ap80, x1=APVsAPDs$apd80.t2,
+             y1=APVsAPDs$ap80, col=colors[8])
+    segments(x0=APVsAPDs$apd90.t1, y0=APVsAPDs$ap90, x1=APVsAPDs$apd90.t2,
+             y1=APVsAPDs$ap90, col=colors[9])
+
+}
