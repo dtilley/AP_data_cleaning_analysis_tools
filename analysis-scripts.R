@@ -325,6 +325,13 @@ jgpplotter <- function(x,y,mar=c(5.1,5.1,5.1,2.1),lwdpt=0.75,...){
 }
 
 
+get.TriShapeCoef <- function(APDsAPVs) {
+    ## T_shape_coef: ~1 is triangulated, ~2.5 dome-like
+    tsc  <- (APDsAPVs$apd40-APDsAPVs$apd30)/(APDsAPVs$apd80-APDsAPVs$apd70)
+    return(tsc)
+}
+
+
 #plot commands
 #plot(x=t.ms/1000,y=mV*1000,type="l",bty="n",xlab="t / s",ylab="mV")
 #points(t.ms[ap.properties.mV$mdp.ndx]/1000,mV[ap.properties.mV$mdp.ndx]*1000,col="red")
