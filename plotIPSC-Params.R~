@@ -1,0 +1,16 @@
+source("~/projects/code-share-112018/jgpplotter.R")
+
+plotIPSC.params <- function(params, ...) {
+    param.labels <- names(params)[1:14]
+    y.labels  <- c(0.01, 0.1, 1, 10)
+    y.mat <- as.matrix(params[,1:14])
+    n <- nrow(y.mat)
+    x.mat <- as.matrix(cbind(rep(1,n),rep(2,n),rep(3,n),rep(4,n),rep(5,n),
+                             rep(6,n),rep(7,n),rep(8,n),rep(9,n),rep(10,n),
+                             rep(11,n),rep(12,n),rep(13,n),rep(14,n)))
+
+    jgpplotter(x=jitter(x.mat,factor=0.5),y=log(y.mat), axes=FALSE, xlab="", ylab="Scale Factor",
+               ...)
+    axis(side=1, at=1:14, labels=param.labels, las=2)
+    axis(side=2, at=log(y.labels), labels=y.labels)
+}
