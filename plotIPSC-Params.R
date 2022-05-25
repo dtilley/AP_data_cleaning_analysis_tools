@@ -1,7 +1,25 @@
 source("~/projects/code-share-112018/jgpplotter.R")
 
+get_params_labels <- function(experssion_format=FALSE) {
+    if (!experssion_format) {
+        return(c("phi", "G_K1",  "G_Kr",  "G_Ks",  "G_to",  "P_CaL", "G_CaT", "G_Na",
+          "G_F", "K_NaCa", "P_NaK", "G_b_Na", "G_b_Ca", "G_PCa"))
+    } else {
+        return(c(expression(phi), expression(G[K1]), expression(G[Kr]),
+                 expression(G[Ks]), expression(G[to]), expression(P[CaL]),
+                 expression(G[CaT]), expression(G[Na]), expression(G[f]),
+                 expression(K[NCX]), expression(P[NaK]), expression(G[bNa]),
+                 expression(G[bCa]), expression(G[PCa])))
+    }
+}
+
 plotIPSC.params <- function(params, cols=NULL, ...) {
-    param.labels <- names(params)[1:14]
+    if (setequal(names(params)[1:14], get_params_labels())) {
+        param.labels <- get_params_labels(experssion_format = TRUE)
+    } else {
+        print("Using parameter labels from data")
+        param.labels <- names(params)[1:14]
+    }
     y.labels  <- c(0.01, 0.1, 1, 10)
     y.mat <- as.matrix(params[,1:14])
     n <- nrow(y.mat)
@@ -12,7 +30,7 @@ plotIPSC.params <- function(params, cols=NULL, ...) {
         jgpplotter(x=jitter(x.mat,factor=0.5),y=log(y.mat), axes=FALSE, xlab="", ylab="Scale Factor",
                    ...)
         axis(side=1, at=1:14, labels=param.labels, las=2)
-        axis(side=2, at=log(y.labels), labels=y.labels)
+        axis(side=2, at=log(y.labels), labels=y.labels, las=2)
     } else if ( length(cols) == nrow(params) ) {
         cols.mat <- NULL
         for (i in seq(length(cols))) {
@@ -22,12 +40,12 @@ plotIPSC.params <- function(params, cols=NULL, ...) {
         jgpplotter(x=jitter(x.mat,factor=0.5),y=log(y.mat), axes=FALSE, xlab="",
                    ylab="Scale Factor", col=cols.mat,  ... )
         axis(side=1, at=1:14, labels=param.labels, las=2)
-        axis(side=2, at=log(y.labels), labels=y.labels)
+        axis(side=2, at=log(y.labels), labels=y.labels, las=2)
     } else {
         jgpplotter(x=jitter(x.mat,factor=0.5),y=log(y.mat), axes=FALSE, xlab="", ylab="Scale Factor",
                    ...)
         axis(side=1, at=1:14, labels=param.labels, las=2)
-        axis(side=2, at=log(y.labels), labels=y.labels)
+        axis(side=2, at=log(y.labels), labels=y.labels, las=2)
     }
 }
 
