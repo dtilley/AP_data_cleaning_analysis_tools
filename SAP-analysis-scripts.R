@@ -283,14 +283,3 @@ apds <- function(t, mV, preThreshold.dt=200) {
     return(rtndf)
     
 }
-
-compile_SAP_metrics <- function(start_ndx, end_ndx, input_prefix, input_suffix) {
-    
-    
-    for (i in start_ndx:end_ndx) {
-        filename <- paste(prefix, as.character(i), suffix, sep="")
-        ap_data <- read.table(filename, header=T)
-    }
-
-}
-

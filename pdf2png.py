@@ -1,5 +1,4 @@
 """ Converts PDF graphics to bitmap png. """
-import os
 import sys
 
 
